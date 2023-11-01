@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>No Nut November</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <style>
+      .fadded-line {
+        margin: 0 auto;
+        background: linear-gradient(
+          to left,
+          rgba(0, 0, 0, 0),
+          #e4e4e7,
+          rgba(0, 0, 0, 0)
+        );
+        transform: rotate(0deg);
+      }
+
+      .pattern {
+        background-color: #dc2626;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23c62627' d='M486 705.8c-109.3-21.8-223.4-32.2-335.3-19.4C99.5 692.1 49 703 0 719.8V800h843.8c-115.9-33.2-230.8-68.1-347.6-92.2C492.8 707.1 489.4 706.5 486 705.8z'/%3E%3Cpath fill='%23ac2628' d='M1600 0H0v719.8c49-16.8 99.5-27.8 150.7-33.5c111.9-12.7 226-2.4 335.3 19.4c3.4 0.7 6.8 1.4 10.2 2c116.8 24 231.7 59 347.6 92.2H1600V0z'/%3E%3Cpath fill='%238e2728' d='M478.4 581c3.2 0.8 6.4 1.7 9.5 2.5c196.2 52.5 388.7 133.5 593.5 176.6c174.2 36.6 349.5 29.2 518.6-10.2V0H0v574.9c52.3-17.6 106.5-27.7 161.1-30.9C268.4 537.4 375.7 554.2 478.4 581z'/%3E%3Cpath fill='%23682729' d='M0 0v429.4c55.6-18.4 113.5-27.3 171.4-27.7c102.8-0.8 203.2 22.7 299.3 54.5c3 1 5.9 2 8.9 3c183.6 62 365.7 146.1 562.4 192.1c186.7 43.7 376.3 34.4 557.9-12.6V0H0z'/%3E%3Cpath fill='%2327272A' d='M181.8 259.4c98.2 6 191.9 35.2 281.3 72.1c2.8 1.1 5.5 2.3 8.3 3.4c171 71.6 342.7 158.5 531.3 207.7c198.8 51.8 403.4 40.8 597.3-14.8V0H0v283.2C59 263.6 120.6 255.7 181.8 259.4z'/%3E%3Cpath fill='%23232326' d='M1600 0H0v136.3c62.3-20.9 127.7-27.5 192.2-19.2c93.6 12.1 180.5 47.7 263.3 89.6c2.6 1.3 5.1 2.6 7.7 3.9c158.4 81.1 319.7 170.9 500.3 223.2c210.5 61 430.8 49 636.6-16.6V0z'/%3E%3Cpath fill='%231f1f21' d='M454.9 86.3C600.7 177 751.6 269.3 924.1 325c208.6 67.4 431.3 60.8 637.9-5.3c12.8-4.1 25.4-8.4 38.1-12.9V0H288.1c56 21.3 108.7 50.6 159.7 82C450.2 83.4 452.5 84.9 454.9 86.3z'/%3E%3Cpath fill='%231a1a1c' d='M1600 0H498c118.1 85.8 243.5 164.5 386.8 216.2c191.8 69.2 400 74.7 595 21.1c40.8-11.2 81.1-25.2 120.3-41.7V0z'/%3E%3Cpath fill='%23131315' d='M1397.5 154.8c47.2-10.6 93.6-25.3 138.6-43.8c21.7-8.9 43-18.8 63.9-29.5V0H643.4c62.9 41.7 129.7 78.2 202.1 107.4C1020.4 178.1 1214.2 196.1 1397.5 154.8z'/%3E%3Cpath fill='%2309090B' d='M1315.3 72.4c75.3-12.6 148.9-37.1 216.8-72.4h-723C966.8 71 1144.7 101 1315.3 72.4z'/%3E%3C/g%3E%3C/svg%3E");
+        background-attachment: fixed;
+        background-size: cover;
+      }
+
+      .wheel {
+        width: 500px;
+        height: 500px;
+        background-color: #09090b;
+        border-radius: 50%;
+        border: 15px solid #09090b;
+        position: relative;
+        overflow: hidden;
+        transition: 5s;
+      }
+
+      .wheel div {
+        height: 50%;
+        width: 300px;
+        position: absolute;
+        clip-path: polygon(100% 0, 50% 100%, 0 0);
+        transform: translateX(-50%);
+        transform-origin: bottom;
+        display: flex;
+        align-items: top;
+        padding-top: 3rem;
+        justify-content: center;
+        left: 85px;
+      }
+
+      .wheel .one {
+        left: 50%;
+      }
+      .wheel .two {
+        transform: rotate(60deg);
+      }
+      .wheel .three {
+        transform: rotate(120deg);
+      }
+      .wheel .four {
+        transform: rotate(180deg);
+      }
+      .wheel .five {
+        transform: rotate(240deg);
+      }
+      .wheel .six {
+        transform: rotate(300deg);
+      }
+
+      #spin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9;
+      }
+
+      #spinner {
+        rotate: 90deg;
+      }
+
+      #inner-spin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9;
+      }
+    </style>
+  </head>
+  <body class="bg-gradient-to-b from-zinc-950 via-zinc-900 to-zinc-900">
+    <nav class="hidden md:block w-full text-white mt-4">
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="bg-gradient-to-tr from-zinc-900/80 to-zinc-900/40 mx-12 rounded-lg"
+        >
+          <ul
+            class="flex flex-row justify-between mx-16 text-lg p-4 font-medium"
+          >
+            <li class="text-red-500 duration-300">
+              <a class="p-4" href="">Home</a>
+            </li>
+            <li class="hover:text-red-500 duration-300">
+              <a class="p-4" href="">Info</a>
+            </li>
+            <li class="hover:text-red-500 duration-300">
+              <a class="p-4" href="">Blog</a>
+            </li>
+            <li class="hover:text-red-500 duration-300">
+              <a class="p-4" href="">Extension</a>
+            </li>
+          </ul>
+        </div>
+        <div class="w-11/12 mx-auto h-0.5 fadded-line"></div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <div
+      class="max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-4 px-8 mx-auto mt-8"
+    >
+      <div class="flex flex-col justify-center items-center">
+        <div class="pl-8">
+          <button
+            class="cursor-default flex flex-row items-center space-x-2 text-white bg-gradient-to-br from-zinc-800/80 pl-4 pr-8 py-2 rounded-lg shadow-lg"
+          >
+            <div
+              class="h-6 w-6 flex items-center justify-center rounded-full leading-normal bg-zinc-700"
+            >
+              <i class="text-sm text-red-500 fas fa-play ml-1"></i>
+            </div>
+            <span class="font-semibold text-sm">30 jours de défi</span>
+          </button>
+          <h1 class="text-white text-5xl font-medium pt-4 pb-6">
+            No Nut November
+          </h1>
+          <h6 class="text-lg text-zinc-400 w-4/5">
+            Découvre à quel point ton cerveau a été ravagé par le porn
+          </h6>
+          <div class="flex flex-row items-center mt-2 space-x-4">
+            <div
+              class="flex justify-center items-center border border-zinc-800 rounded-full h-24 w-24 -ml-4"
+            >
+              <div
+                class="flex justify-center items-center border border-zinc-600 rounded-full h-16 w-16"
+              >
+                <div
+                  class="flex justify-center items-center border border-zinc-500 rounded-full h-10 w-10 bg-zinc-800"
+                >
+                  <i class="text-red-500 fas fa-play ml-0.5"></i>
+                </div>
+              </div>
+            </div>
+            <a
+              class="text-zinc-200 font-medium text-lg tracking-wider"
+              href="https://nnn-2023.github.io/"
+              >Faire le Test</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="relative flex flex-col items-center">
+        <img class="h-11/12 w-auto" src="./main.png" alt="" />
+        <div class="flex flex-col xl:w-3/4">
+          <div
+            class="px-8 py-4 text-zinc-200 font-semibold bg-white bg-gray-400 bg-clip-padding rounded-sm backdrop-filter backdrop-blur-lg bg-opacity-10 -mt-24 mb-4"
+          >
+            <div class="flex flex-row justify-between">
+              <h6 class="mb-2">Libère-toi</h6>
+              <div
+                class="h-8 w-8 flex items-center justify-center rounded-full leading-normal"
+              >
+                <i
+                  class="text-transparent bg-clip-text bg-gradient-to-tr from-red-400 to-red-600 fas fa-percent"
+                ></i>
+              </div>
+            </div>
+            <p class="text-sm font-medium text-zinc-400 w-2/3">
+              En Novembre, quitte cette addiction qui te gâche la vie depuis des
+              années
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Header -->
+
+    <!-- Three Blocks -->
+    <div class="bg-zinc-300 mb-16 pb-8 px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+        <div class="flex flex-col space-y-8">
+          <div
+            class="py-16 space-y-2 -mt-12 flex flex-col items-center bg-zinc-950 shadow-xl rounded"
+          >
+            <h4 class="text-red-500 text-3xl font-semibold">+45%</h4>
+            <h6 class="text-zinc-100 font-semibold text-lg pb-2">
+              de testostérone en 7 jours
+            </h6>
+            <p class="w-3/4 text-zinc-400 text-center">
+              Une étude montre que le Nofap augmente les niveaux de testostérone
+              de 45%, le pic de est atteint au 7e jour d'abstinence ¹
+            </p>
+          </div>
+          <div
+            class="py-16 space-y-2 flex flex-col items-center bg-zinc-950 shadow-xl rounded"
+          >
+            <h4 class="text-red-500 text-3xl font-semibold">13 ans</h4>
+            <h6 class="text-zinc-100 font-semibold text-lg pb-2">
+              l'âge moyen
+            </h6>
+            <p class="w-3/4 text-zinc-400 text-center">
+              L'âge moyen de la première exposition à du contenu pornographique
+              est de 13 ans, dans certains cas elle a lieu dès 5 ans ²
+            </p>
+          </div>
+        </div>
+        <div class="flex flex-col justify-center">
+          <div
+            class="py-16 space-y-2 flex flex-col items-center bg-zinc-950 shadow-xl rounded"
+          >
+            <h4 class="text-red-500 text-3xl font-semibold">+200 à 300%</h4>
+            <h6 class="text-zinc-100 font-semibold text-lg pb-2">
+              de violence
+            </h6>
+            <p class="w-3/4 text-zinc-400 text-center">
+              Les garçons exposés à la pornographie violente sont 2-3 fois plus
+              susceptibles d'être victime ou coupable de violence ³
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="mt-8 flex flex-wrap space-y-4 justify-center">
+        <div class="w-full">
+          <h5 class="text-center text-zinc-800 text-2xl font-semibold">
+            Besoin d'aide pour arrêter ?
+          </h5>
+          <p class="text-center text-zinc-700">
+            Viens en discuter sur notre serveur Discord
+          </p>
+        </div>
+        <a
+          class="bg-gradient-to-tr from-red-500 to-red-600 hover:from-red-600 hover:to-red-500 duration-300 px-8 py-2 rounded-full text-zinc-100 font-semibold shadow-xl"
+          href="https://discord.gg/6JZpaJ45Hy"
+          >Rejoindre</a
+        >
+      </div>
+    </div>
+    <!-- Three Blocks -->
+
+    <!-- Check List -->
+    <div class="max-w-5xl mx-auto flex items-center justify-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div class="flex justify-center">
+          <img class="px-8 rounded-lg" src="./waifu.png" alt="" />
+        </div>
+        <div class="flex flex-col w-4/5 lg:w-full mx-auto">
+          <h3 class="text-zinc-100 text-4xl font-semibold mb-6">
+            Inconvénients des Waifus
+          </h3>
+          <ul class="text-zinc-200 flex flex-col justify-center">
+            <li class="py-4 flex flex-col">
+              <div class="flex flex-row items-center space-x-4">
+                <span class="text-white font-bold">1.</span>
+                <div>
+                  <h6 class="font-semibold text-lg">
+                    Indifférente à ton existence
+                  </h6>
+                  <p class="text-zinc-400">
+                    Les waifus vivent des aventures palpitantes, pendant que tu
+                    restes enfermé dans ta chambre et que tu stresses à l'idée
+                    de d'adresser la parole à une fille
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="py-4 flex flex-col">
+              <div class="flex flex-row space-x-4 items-center">
+                <span class="text-white font-bold">2.</span>
+                <div>
+                  <h6 class="font-semibold text-lg">
+                    Cherche à aspirer ton âme
+                  </h6>
+                  <p class="text-zinc-400">
+                    Elles se nourrissent de ton attention, plus tu leurs donnes
+                    de temps de cerveau disponible, moins tu as de chance de
+                    reprendre le contrôle de ta vie
+                  </p>
+                </div>
+              </div>
+            </li>
+            <li class="py-4 flex flex-col">
+              <div class="flex flex-row space-x-4 items-center">
+                <span class="text-white font-bold">3.</span>
+                <div>
+                  <h6 class="font-semibold text-lg">
+                    N'existe même pas dans la vraie vie
+                  </h6>
+                  <p class="text-zinc-400">Elles ne sont pas réelles.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="max-w-5xl mx-auto p-16 text-zinc-400">
+      <p class="pb-2">
+        Vous savez pourqoi le phénomène des waifus est devenu la norme chez les
+        kikoojap et certains autres déchets du forum ?
+      </p>
+      <p>
+        Les personnages féminins idéalisés dans les anime et sont souvent
+        associés à l'innocence et à la perfection du monde en 2D par opposition
+        au monde réel imparfait en 3D. On peut établir un lien entre ces
+        personnages et l'archétype féminin jungien de l'Anima. Les waifus
+        symbolisent en réalité la vierge marie, il faut le savoir hein.
+      </p>
+      <p>
+        Le symbolisme religieux archaïque s'est transformé au fil du temps,et
+        aujourd'hui il se révèle sur l'Internet sous la forme de memes.
+      </p>
+    </div> -->
+    <!-- Check List -->
+
+    <!-- Three cards -->
+    <div class="max-w-5xl xl:mx-auto flex flex-col space-y-8 mt-12">
+      <h2 class="text-4xl text-white font-semibold p-8 pb-0 x-16">
+        C'est quoi le No Nut November ?
+      </h2>
+      <div class="bg-zinc-950 p-8 mx-8">
+        <div class="flex flex-wrap items-center gap-8">
+          <div
+            class="rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-600/10 via-red-500"
+          >
+            <div
+              class="flex h-20 w-20 text-3xl rounded-full items-center justify-center bg-gray-800 sahdow-inner"
+            >
+              <img class="h-10 w-10" src="./peach.png" alt="" />
+            </div>
+          </div>
+          <div class="w-3/5">
+            <h5 class="text-2xl font-semibold text-zinc-100 mb-2">
+              Pas de masturbation
+            </h5>
+            <p class="text-zinc-400">
+              Pendant le <i>No Nut November</i>, les participants s'engagent à
+              ne pas atteindre volontairement l'orgasme pendant tout le mois de
+              novembre.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-zinc-950 p-8 mx-8">
+        <div class="flex flex-wrap items-center gap-8">
+          <div
+            class="rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-600/10 via-red-500"
+          >
+            <div
+              class="flex h-20 w-20 text-3xl rounded-full items-center justify-center bg-gray-800 sahdow-inner"
+            >
+              <img class="h-10 w-10" src="./no.png" alt="" />
+            </div>
+          </div>
+          <div class="w-3/5">
+            <h5 class="text-2xl font-semibold text-zinc-100 mb-2">
+              Pas de porno
+            </h5>
+            <p class="text-zinc-400">
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Molestias exercitationem maxime architecto, doloribus recusandae
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-zinc-950 p-8 mx-8">
+        <div class="flex flex-wrap items-center gap-8">
+          <div
+            class="rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-br from-red-600 to-red-600/10 via-red-500"
+          >
+            <div
+              class="flex h-20 w-20 text-3xl rounded-full items-center justify-center bg-gray-800 sahdow-inner"
+            >
+              <img class="h-10 w-10" src="./cherries.png" alt="" />
+            </div>
+          </div>
+          <div class="w-3/5">
+            <h5 class="text-2xl font-semibold text-zinc-100 mb-2">
+              Participation communautaire
+            </h5>
+            <p class="text-zinc-400">
+              Le <i>No Nut November</i> est souvent suivi en ligne, créant ainsi
+              une communauté de participants qui se soutiennent mutuellement et
+              se motivent.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Three cards -->
+
+    <!-- Horizontal transparent cards -->
+    <div class="bg-zinc-950 p-8 pt-16 mt-4">
+      <h2 class="max-w-5xl mx-auto text-4xl text-white font-semibold mb-8 px-4">
+        Le meilleur moyen d'arrêter
+      </h2>
+      <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div
+          class="flex flex-col p-8 space-y-4 hover:bg-gradient-to-tr from-zinc-900 to-zinc-800 rounded-md"
+        >
+          <h5 class="text-2xl font-semibold text-zinc-100">
+            Rejoindre le serveur Discord
+          </h5>
+          <p class="text-zinc-400">
+            Première étape, créer un compte Discord si ce n'est déjà fait. Et
+            cliquer sur le lien ci-dessous.
+          </p>
+          <div>
+            <a
+              class="mt-4 bg-gradient-to-tr from-red-500 to-red-600 hover:from-red-600 hover:to-red-500 duration-300 px-8 py-2 rounded-full text-zinc-100 font-semibold shadow-xl"
+              href="https://discord.gg/6JZpaJ45Hy"
+              >Rejoindre</a
+            >
+          </div>
+        </div>
+        <div
+          class="flex flex-col p-8 space-y-4 bg-gradient-to-tr from-zinc-900 to-zinc-800 rounded-md"
+        >
+          <h5 class="text-2xl font-semibold text-zinc-100">
+            Trouver un binôme
+          </h5>
+          <p class="text-zinc-400">
+            Trouver un binôme avec qui vous passerez les 30 prochains jours et
+            avec qui vous pourrez partagez vos succès et vos échecs.
+          </p>
+          <div>
+            <a
+              class="mt-4 bg-gradient-to-tr from-red-500 to-red-600 hover:from-red-600 hover:to-red-500 duration-300 px-8 py-2 rounded-full text-zinc-100 font-semibold shadow-xl"
+              href="https://discord.gg/6JZpaJ45Hy"
+              >Rejoindre</a
+            >
+          </div>
+        </div>
+        <div
+          class="flex flex-col p-8 space-y-4 hover:bg-gradient-to-tr from-zinc-900 to-zinc-800 rounded-md"
+        >
+          <h5 class="text-2xl font-semibold text-zinc-100">
+            Éviter de faire bannir votre binôme
+          </h5>
+          <p class="text-zinc-400">
+            Votre échec arua des conséquence immédiate sur votre partenanire de
+            NNN. En cas d'échec de votre part, c'est lui qui prendra à votre
+            place.
+          </p>
+          <div>
+            <a
+              class="mt-4 bg-gradient-to-tr from-red-500 to-red-600 hover:from-red-600 hover:to-red-500 duration-300 px-8 py-2 rounded-full text-zinc-100 font-semibold shadow-xl"
+              href="https://discord.gg/6JZpaJ45Hy"
+              >Rejoindre</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Horizontal transparent cards -->
+
+    <!-- Ranking -->
+
+    <!-- Ranking -->
+
+    <!-- Chat -->
+    <div class="flex flex-col space-y-4 my-16 max-w-5xl mx-auto px-8">
+      <h2 class="text-center text-4xl text-white font-semibold p-8">
+        Ton objectif pour les 30 prochains jours
+      </h2>
+      <div class="px-8 flex flex-col items-center gap-4">
+        <div class="flex flex-row space-x-4 xl:ml-36">
+          <div
+            class="flex justify-center items-center bg-blue-500 text-white py-3 px-6 rounded-t-xl rounded-bl-xl rounded-br-sm shadow-inner font-medium"
+          >
+            Et toi Célestin, tu vas faire quoi pendant les vacances ?
+          </div>
+          <img
+            class="h-12 w-12 rounded-full object-cover"
+            src="./fille.jpeg"
+            alt=""
+          />
+        </div>
+        <div class="flex flex-row space-x-4 xl:mr-36">
+          <img
+            class="h-12 w-12 rounded-full object-cover"
+            src="./cel.png"
+            alt=""
+          />
+          <div
+            class="flex justify-center items-center bg-white text-zinc-950 py-3 px-6 rounded-t-xl rounded-br-xl rounded-bl-sm shadow-inner font-medium"
+          >
+            Je vais effayer de ne pas me branfer pfendant 1 mois !
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chat -->
+
+    <!-- Wheel -->
+    <div class="flex flex-col justify-center items-center mx-auto">
+      <h2 class="text-center text-4xl text-white font-semibold p-8">
+        Clique sur la roue pour découvrir ton défi bonus
+      </h2>
+      <div id="wheel_btn" class="relative rounded-full">
+        <button id="spin">
+          <div
+            id="spinner"
+            class="bg-zinc-900/30 backdrop-blur h-20 w-20 rounded-full"
+          ></div>
+          <div
+            id="inner-spin"
+            class="bg-zinc-900/60 backdrop-blur-lg h-16 w-16 rounded-full"
+          >
+            <i
+              id="clicker"
+              class="text-zinc-100/90 text-6xl rotate-180 -mt-2 fa-solid fa-location-dot"
+            ></i>
+          </div>
+        </button>
+        <img id="wheel" src="./wheel.png" alt="" />
+      </div>
+
+      <div class="flex flex-col gap-2 max-w-5xl mx-auto w-full p-8">
+        <div
+          class="flex flex-row justify-start items-center gap-4 bg-zinc-950 p-4 pl-8 rounded-lg text-sm font-semibold text-zinc-200"
+        >
+          <img class="h-8 w-8" src="./nut.png" alt="" />
+          <p class="">
+            No Nut November classique, interdiction de regarder du contenu
+            pornographique et d'éjaculer
+          </p>
+        </div>
+        <div
+          class="flex flex-row justify-start items-center gap-4 bg-zinc-950 p-4 pl-8 rounded-lg text-sm font-semibold text-zinc-200"
+        >
+          <img class="h-8 w-8" src="./peach.png" alt="" />
+          <p class="">
+            Pas de sexe pendant 30 jours (Aucun changement à prévoir dans ton
+            cas 👀)
+          </p>
+        </div>
+        <div
+          class="flex flex-row justify-start items-center gap-4 bg-zinc-950 p-4 pl-8 rounded-lg text-sm font-semibold text-zinc-200"
+        >
+          <img class="h-8 w-8" src="./burger.png" alt="" />
+          <p class="">
+            Interdiction de manger de la junk food durant tout le mois de
+            novembre
+          </p>
+        </div>
+        <div
+          class="flex flex-row justify-start items-center gap-4 bg-zinc-950 p-4 pl-8 rounded-lg text-sm font-semibold text-zinc-200"
+        >
+          <img class="h-8 w-8" src="./lotus.png" alt="" />
+          <p class="">
+            Séance de méditation quotidienne d'au moins 20 minutes jusqu'en
+            décembre
+          </p>
+        </div>
+        <div
+          class="flex flex-row justify-start items-center gap-4 bg-zinc-950 p-4 pl-8 rounded-lg text-sm font-semibold text-zinc-200"
+        >
+          <img class="h-8 w-8" src="./books.png" alt="" />
+          <p class="">
+            Lire 1 livre par semaine pendant toute la durée du défi
+          </p>
+        </div>
+        <div
+          class="flex flex-row justify-start items-center gap-4 bg-zinc-950 p-4 pl-8 rounded-lg text-sm font-semibold text-zinc-200"
+        >
+          <img class="h-8 w-8" src="./ice.png" alt="" />
+          <p class="">
+            Tu dois prendre toutes tes douches aves l'eau la plus froide
+            possible
+          </p>
+        </div>
+      </div>
+      <script>
+        let wheel = document.getElementById("wheel");
+        let spinner = document.querySelector("#spinner");
+        let btn = document.getElementById("wheel_btn");
+        let currentRotation = 0;
+        const rotationIncrement = 1230; // Adjust this value for the desired increment
+        const maxRandomAdjustment = 555; // Adjust this value for the maximum random adjustment
+
+        btn.onclick = function () {
+          const randomAdjustment = Math.random() * maxRandomAdjustment;
+          currentRotation += rotationIncrement + randomAdjustment;
+          spinner.style.transition = "transform 5s ease-in-out";
+          spinner.style.transform = `rotate(${currentRotation}deg)`;
+          wheel.style.transition = "transform 5s ease-in-out";
+          wheel.style.transform = `rotate(${currentRotation}deg)`;
+        };
+      </script>
+    </div>
+    <!-- Wheel -->
+
+    <div class="max-w-5xl mx-auto p-8 text-zinc-400 flex flex-col gap-2">
+      <h5 class="text-2xl font-semibold text-zinc-100 pb-4">Sources</h5>
+      <p>
+        ¹
+        <a
+          href="https://medium.com/@whitep/how-masturbation-affects-testosterone-levels-ebb458f3846e"
+          >https://medium.com/@whitep/how-masturbation-affects-testosterone-levels-ebb458f3846e</a
+        >
+      </p>
+      <p>
+        ²
+        <a
+          href="https://www.tandfonline.com/doi/abs/10.1080/10720162.2013.843067"
+          >https://www.tandfonline.com/doi/abs/10.1080/10720162.2013.843067</a
+        >
+      </p>
+      <p>
+        ³
+        <a href="https://link.springer.com/article/10.1007/s10508-019-1435-4"
+          >https://link.springer.com/article/10.1007/s10508-019-1435-4</a
+        >
+      </p>
+    </div>
+
+    <div class="h-36"></div>
+  </body>
+</html>
